@@ -1,0 +1,184 @@
+      /* Global Style */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: #111;
+            color: #fff;
+            padding: 1.5em;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            padding: 0.5em 0;
+            background-color: #333;
+        }
+        
+        nav ul li {
+            margin: 0 1em;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #1a1a1a, #333);
+            color: white;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .hero-buttons a {
+            padding: 12px 25px;
+            margin: 0 10px;
+            background-color: #f7c600;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .hero-buttons a:hover {
+            background-color: #e6a900;
+        }
+        
+        /* Main Content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 3em 0;
+        }
+        
+        section {
+            margin: 2em 0;
+            padding: 2.5em;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 0.8em;
+        }
+
+        .section-content {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(to bottom, #e2f1f8, #c1e0e9);
+            color: #333;
+            padding: 2.5em;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* Course Section */
+        .courses-list {
+            display: flex;
+            justify-content: space-between;
+            gap: 1em;
+            flex-wrap: wrap;
+        }
+        
+        .course-item {
+            background: #f4f4f4;
+            padding: 2em;
+            width: 30%;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .course-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .course-item h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .course-item p {
+            color: #555;
+            margin-bottom: 1.5em;
+        }
+
+        /* Membership Section */
+        .membership-section {
+            background: linear-gradient(to bottom, #f0e5d8, #f6e6a3);
+            color: #333;
+            padding: 2.5em;
+            text-align: center;
+            border-radius: 8px;
+        }
+.button {
+            padding: 12px 25px;
+            background-color: #f7c600;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .button:hover {
+            background-color: #e6a900;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            margin-top: 1.5em;
+            font-style: italic;
+        }
+
+        .testimonials blockquote {
+            margin: 1.5em 0;
+            color: #555;
+            font-size: 1.2em;
+        }
+
