@@ -4,93 +4,174 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>PIP-STORM ACADEMY</title>
+	<title>Trading Academy Pro</title>
 	<link rel="stylesheet" href="styles.css">
 	<script defer src="app.js"></script>
 </head>
 
 <body>
-
-	<nav>
-		<ul>
+	<nav class="navbar">
+		<div class="nav-brand">Trading Academy Pro</div>
+		<ul class="nav-links">
 			<li><a href="#home">Home</a></li>
 			<li><a href="#about">About</a></li>
 			<li><a href="#courses">Courses</a></li>
-			<li><a href="#membership">Membership</a></li>
-			<li><a href="#testimonials">Testimonials</a></li>
 			<li><a href="#contact">Contact</a></li>
 		</ul>
 	</nav>
-	<!-- Header -->
-	<header>
-		<h1>Trading Academy</h1>
-		<p>Master Trading with Expert Guidance</p>
-	</header>
 
-	<!-- Navigation -->
-
-	<!-- Hero Section -->
-	<section class="hero" id="home">
-		<h1>Level Up Your Trading Skills</h1>
-		<p>Join our academy to access professional training, exclusive resources, and a community of passionate traders.
-		</p>
-		<div class="hero-buttons">
-			<a href="#about">About Our Academy</a>
-			<a href="#courses">Our Courses</a>
-			<a href="#membership">Become a Member</a>
+	<section id="home" class="hero">
+		<div class="hero-content">
+			<h1>Master The Markets</h1>
+			<p>Professional Trading Education & Live Signals</p>
+			<div class="cta-buttons">
+				<a href="#courses" class="btn primary">View Courses</a>
+				<a href="#contact" class="btn secondary">Get Started</a>
+			</div>
 		</div>
 	</section>
 
-	<div class="container">
-
-		<!-- About Section -->
-		<section class="about-section" id="about">
-			<h2>About Our Academy</h2>
-			<div class="section-content">
-				<p>Our Trading Academy is dedicated to empowering traders of all levels with high-quality education and
-					practical strategies. Whether you're a beginner or an experienced trader, our expert-led courses and
-					hands-on approach will help you reach your trading goals.</p>
+	<section id="about" class="about">
+		<div class="container">
+			<h2>Why Choose Us</h2>
+			<div class="features">
+				<div class="feature-card">
+					<div class="feature-icon">📈</div>
+					<h3>Expert Mentorship</h3>
+					<p>Learn from professional traders with years of market experience</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🎯</div>
+					<h3>Live Signals</h3>
+					<p>Get real-time trading signals with detailed analysis</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">📚</div>
+					<h3>Comprehensive Learning</h3>
+					<p>From basics to advanced strategies, we cover it all</p>
+				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- Courses Section -->
-		<section id="courses">
-			<h2>Our Courses</h2>
-			<div class="section-content">
-				<p>We offer courses for all experience levels. Each course includes comprehensive materials and live
-					sessions to deepen your understanding of the market.</p>
-				<div class="courses-list">
-					<div class="course-item">
-						<h3>Beginner Course</h3>
-						<p>Market fundamentals, basic strategies, and getting started in trading.</p>
+	<section id="courses" class="courses">
+		<div class="container">
+			<h2>Our Programs</h2>
+			<div class="toggle-container">
+				<button id="show-courses" class="toggle-btn active">Courses</button>
+				<button id="show-signals" class="toggle-btn">Signals</button>
+			</div>
+
+			<div id="courses-content" class="content-section">
+				<div class="courses-grid">
+					<div class="course-card">
+						<h3>Beginner Trading</h3>
+						<p>Master the fundamentals of trading and market analysis</p>
+						<a href="#contact" class="btn secondary">Learn More</a>
 					</div>
-					<div class="course-item">
-						<h3>Intermediate Course</h3>
-						<p>Technical analysis, trading psychology, and risk management for experienced traders.</p>
+					<div class="course-card">
+						<h3>Advanced Strategies</h3>
+						<p>Complex trading strategies and risk management</p>
+						<a href="#contact" class="btn secondary">Learn More</a>
 					</div>
-					<div class="course-item">
-						<h3>Advanced Course</h3>
-						<p>In-depth market analysis, advanced strategies, and real-time trading practice.</p>
+					<div class="course-card">
+						<h3>Pro Trading</h3>
+						<p>Professional-level trading techniques and psychology</p>
+						<a href="#contact" class="btn secondary">Learn More</a>
 					</div>
 				</div>
 			</div>
-		</section>
 
-		<!-- Membership Section -->
-		<section class="membership-section" id="membership">
-			<h2>Become a Member</h2>
-			<div class="section-content">
-
-				<p>Join our academy to access exclusive content, real-time trading sessions, and much more. Secure your
-					spot and start learning today.</p>
-				<br>
-				<a href="#contact" class="button">Contact Us to Join</a>
+			<div id="signals-content" class="content-section hidden">
+				<div class="signals-grid">
+					<div class="signal-card">
+						<div class="signal-icon">📊</div>
+						<h3>Daily Signals</h3>
+						<p>Get detailed trading signals with entry, exit, and risk levels</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">📈</div>
+						<h3>Weekly Analysis</h3>
+						<p>Comprehensive market analysis and upcoming opportunities</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card featured">
+						<div class="signal-icon">👑</div>
+						<div class="featured-tag">Most Popular</div>
+						<h3>VIP Signals</h3>
+						<p>Premium signals with direct mentor support</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">💎</div>
+						<h3>Crypto Signals</h3>
+						<p>Specialized signals for cryptocurrency markets</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">📱</div>
+						<h3>Mobile Alerts</h3>
+						<p>Instant mobile notifications for time-sensitive trades</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">🤖</div>
+						<h3>Bot Integration</h3>
+						<p>Automated trading signals with bot compatibility</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">🌎</div>
+						<h3>Forex Signals</h3>
+						<p>Currency pair analysis and trading opportunities</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+					<div class="signal-card">
+						<div class="signal-icon">📗</div>
+						<h3>Options Signals</h3>
+						<p>Options trading strategies and recommendations</p>
+						<a href="#" class="btn secondary">Subscribe</a>
+					</div>
+				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
+	<section id="contact" class="contact">
+		<div class="container">
+			<h2>Start Your Journey</h2>
+			<form class="contact-form">
+				<div class="form-group">
+					<input type="text" placeholder="Your Name" required>
+				</div>
+				<div class="form-group">
+					<input type="email" placeholder="Your Email" required>
+				</div>
+				<div class="form-group">
+					<select required>
+						<option value="">Select Program</option>
+						<option value="beginner">Beginner Course</option>
+						<option value="advanced">Advanced Course</option>
+						<option value="pro">Pro Course</option>
+						<option value="signals">Trading Signals</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<textarea placeholder="Your Message" required></textarea>
+				</div>
+				<button type="submit" class="btn primary">Send Message</button>
+			</form>
+		</div>
+	</section>
+	<div id="pricing-modal" class="modal hidden">
+		<div class="modal-container">
+			<button id="close-modal" class="close-modal">×</button>
+			<div class="modal-content">
+				<!--	Please leave empty as Javascript will fill it		-->
+			</div>
+		</div>
+	</div>
+</body>
 
-		<!-- Contact Section -->
-		<section id="contact">
-			<h2>Contact Us</h2>
-			<form action="https://example.com/contact" method="POST">
-				<label for="name">
+</html>
