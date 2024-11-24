@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Payment - PipStorm Academy</title>
+	<style>
+		:root {
+			--primary-color: #ffd700;
+			--primary-dark: #ccac00;
+			--secondary-color: #1a1a1a;
+			--accent-color: #333333;
+			--text-light: #ffffff;
+			--text-dark: #1a1a1a;
+			--transition: all 0.3s ease;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			background-color: var(--secondary-color);
+			font-family: 'Inter', sans-serif;
+			min-height: 100vh;
+		}
+
+		.navbar {
+			background-color: rgba(26, 26, 26, 0.95);
+			backdrop-filter: blur(10px);
+			padding: 1rem 2rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1000;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.nav-brand {
+			color: var(--primary-color);
+			font-size: 1.5rem;
+			font-weight: 700;
+			text-decoration: none;
+			letter-spacing: 0.5px;
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 2rem;
+			list-style: none;
+		}
+
+		.nav-links a {
+			color: var(--text-light);
+			text-decoration: none;
+			font-size: 1rem;
+			font-weight: 500;
+			transition: var(--transition);
+			padding: 0.5rem 1rem;
+			border-radius: 6px;
+		}
+
+		.nav-links a:hover {
+			color: var(--primary-color);
+			background-color: rgba(255, 215, 0, 0.1);
+		}
+
+		.payment-container {
+			max-width: 800px;
+			margin: 100px auto 0;
+			padding: 2rem;
+			color: var(--text-light);
+		}
+
+		.payment-options {
+			display: grid;
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		.payment-card {
+			background-color: var(--accent-color);
+			padding: 2rem;
+			border-radius: 10px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			transition: var(--transition);
+			cursor: pointer;
+		}
+
+		.payment-card:hover {
+			transform: translateY(-5px);
+			border-color: var(--primary-color);
+		}
+
+		.payment-details {
+			display: none;
+			margin-top: 1rem;
+			padding: 1rem;
+			background-color: rgba(255, 255, 255, 0.1);
+			border-radius: 5px;
+		}
+
+		.payment-card.active .payment-details {
+			display: block;
+		}
+
+		.payment-card.active {
+			border-color: var(--primary-color);
+			background-color: rgba(255, 215, 0, 0.1);
+		}
+
+		.amount-display {
+			text-align: center;
+			margin-bottom: 2rem;
+			padding: 2rem;
+			background-color: var(--accent-color);
+			border-radius: 10px;
+		}
+
+		.amount-display h2 {
+			color: var(--primary-color);
+			font-size: 2.5rem;
+			margin: 1rem 0;
+		}
+
+		.amount-display h3 {
+			color: var(--text-light);
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.account-number {
+			font-family: monospace;
+			background-color: rgba(0, 0, 0, 0.2);
+			padding: 0.5rem;
+			border-radius: 5px;
+			margin: 0.5rem 0;
+			text-align: center;
+			cursor: pointer;
+		}
+
+		.copy-message {
+			font-size: 0.875rem;
+			color: var(--primary-color);
+			text-align: center;
+			margin-top: 0.5rem;
+			display: none;
+		}
+
+		.qr-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1.5rem;
+			margin: 1.5rem 0;
+		}
+
+		.qr-placeholder {
+			width: 180px;
+			height: 180px;
+			background-color: var(--primary-color);
+			border-radius: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--text-dark);
+			font-weight: bold;
+		}
+
+		.usdt-image {
+			width: 100%;
+			max-width: 300px;
+			height: auto;
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			transition: var(--transition);
+		}
+
+		.usdt-image:hover {
+			transform: scale(1.02);
+		}
+
+		.loader {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 200px;
+		}
+
+		.loader::after {
+			content: "";
+			width: 32px;
+			height: 32px;
+			border: 4px solid var(--text-light);
+			border-top-color: var(--primary-color);
+			border-radius: 50%;
+			animation: spin 1s linear infinite;
+		}
+
+		@keyframes spin {
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+		@media (max-width: 768px) {
+			.navbar {
+				padding: 1rem;
+			}
+
+			.nav-brand {
+				font-size: 1.25rem;
+			}
+
+			.nav-links {
+				gap: 1rem;
+			}
+
+			.nav-links a {
+				padding: 0.4rem 0.8rem;
+				font-size: 0.9rem;
+			}
+
+			.payment-container {
+				padding: 1rem;
+				margin-top: 80px;
+			}
+
+			.qr-placeholder {
+				width: 150px;
+				height: 150px;
+			}
+
+			.usdt-image {
+				max-width: 250px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar">
+		<a href="homepage.html" class="nav-brand">PipStorm Academy</a>
+		<ul class="nav-links">
+			<li><a href="homepage.html">Home</a></li>
+		</ul>
+	</nav>
+
+	<div class="payment-container">
+		<div class="amount-display">
+			<h3>Amount to Pay</h3>
+			<div id="loading" class="loader"></div>
+			<h2 id="amount-text" style="display: none;"></h2>
+		</div>
+
+		<div class="payment-options">
+			<div class="payment-card" onclick="togglePaymentMethod('bank')">
+				<h3>Local Bank Transfer</h3>
+				<div class="payment-details" id="bank-details">
+					<p><strong>Bank:</strong> Moniepoint</p>
+					<div class="account-number" onclick="copyToClipboard('8107061926')">8107061926</div>
+					<div class="copy-message" id="copy-message">Account number copied!</div>
+				</div>
+			</div>
+
+			<div class="payment-card" onclick="togglePaymentMethod('usdt')">
+				<h3>USDT Payment</h3>
+				<div class="payment-details" id="usdt-details">
+					<div class="qr-container">
+						<div class="qr-placeholder">USDT QR Code</div>
+						<img src="media/USDT.jpeg" alt="USDT" class="usdt-image">
+						<p>Scan QR code to pay with USDT</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const urlParams = new URLSearchParams(window.location.search);
+			const amount = urlParams.get('amount');
+			const currency = urlParams.get('currency');
+
+			async function updateAmount() {
+				const amountText = document.getElementById('amount-text');
+				const loading = document.getElementById('loading');
+
+				try {
+					if (currency === 'USD') {
+						const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+						const data = await response.json();
+						const rate = data.rates.NGN;
+						const nairaAmount = Math.ceil(parseFloat(amount) * rate);
+						amountText.textContent = `$${amount} (₦${nairaAmount.toLocaleString()})`;
+					} else {
+						amountText.textContent = `₦${parseFloat(amount).toLocaleString()}`;
+					}
+				} catch (error) {
+					amountText.textContent = currency === 'USD' ?
+						`$${amount}` :
+						`₦${parseFloat(amount).toLocaleString()}`;
+				} finally {
+					loading.style.display = 'none';
+					amountText.style.display = 'block';
+				}
+			}
+
+			window.togglePaymentMethod = function (method) {
+				const cards = document.querySelectorAll('.payment-card');
+				cards.forEach(card => card.classList.remove('active'));
+
+				const selectedCard = document.querySelector(`.payment-card:has(#${method}-details)`);
+				if (selectedCard) {
+					selectedCard.classList.add('active');
+				}
+			};
+
+			window.copyToClipboard = function (text) {
+				navigator.clipboard.writeText(text);
+				const copyMessage = document.getElementById('copy-message');
+				copyMessage.style.display = 'block';
+				setTimeout(() => {
+					copyMessage.style.display = 'none';
+				}, 2000);
+			};
+
+			updateAmount();
+		});
+	</script>
+</body>
+
+</html>

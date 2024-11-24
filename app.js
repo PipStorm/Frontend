@@ -22,115 +22,82 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeModal = document.getElementById("close-modal");
   const subscribeButtons = document.querySelectorAll(".signal-card .btn");
   const modalContent = document.querySelector(".modal-content");
+  const makePaymentButtons = document.querySelectorAll(".course-card .btn");
 
   const signalPlans = {
-    daily: {
-      title: "Daily Signals Package",
-      price: "$99/month",
+    "BI - Weekly (2weeks) currency": {
+      title: "BI - Weekly (2 weeks) Currency",
+      price: "$20/week",
       features: [
-        "3-5 trading signals per day",
-        "Entry and exit points",
-        "Stop loss levels",
-        "Risk management guidelines",
-        "Basic market analysis",
-        "Email notifications",
+        "Precise entry and exit points for trades",
+        "Recommended stop-loss levels to minimize risks",
+        "Comprehensive risk management advice",
+        "Basic market analysis for informed decisions",
       ],
     },
-    weekly: {
-      title: "Weekly Analysis Package",
-      price: "$199/month",
+    "Currency and synthetics and crypto": {
+      title: "Currency, Synthetics, and Crypto",
+      price: "$90/month",
       features: [
-        "Weekly market overview",
-        "Major market opportunities",
-        "2-3 high-probability setups per week",
-        "Detailed technical analysis",
-        "Educational content",
-        "Email and SMS notifications",
-        "Weekly live Q&A session",
+        "All-inclusive signals for currency, synthetics, and crypto markets",
+        "High-priority alerts for timely trading opportunities",
+        "Exclusive access to weekly webinars hosted by experts",
       ],
     },
-    vip: {
-      title: "VIP Signals Package",
-      price: "$499/month",
+    "BI Weekly synthetics": {
+      title: "BI Weekly Synthetics",
+      price: "$25/week",
       features: [
-        "All features from Daily and Weekly packages",
-        "Priority signal alerts",
-        "Direct mentor support via WhatsApp",
-        "Custom risk management strategy",
-        "Portfolio review",
-        "One-on-one monthly strategy session",
-        "24/7 support access",
-        "Exclusive weekly webinars",
+        "Tailored signals for synthetic markets",
+        "Advanced risk management guidance for synthetic assets",
+        "Round-the-clock market coverage to ensure no missed trades",
       ],
     },
-    crypto: {
-      title: "Crypto Signals Package",
-      price: "$299/month",
+    "Currency Monthly - $50": {
+      title: "Currency Monthly",
+      price: "$50/month",
+      features: ["Real-time updates on currency market movements and trends"],
+    },
+    "Synthetics monthly": {
+      title: "Synthetics Monthly",
+      price: "$70/month",
       features: [
-        "Cryptocurrency-specific signals",
-        "DeFi opportunities",
-        "Altcoin analysis",
-        "Market sentiment indicators",
-        "Blockchain metrics analysis",
-        "Technical and fundamental analysis",
-        "Risk management for crypto",
-        "24/7 crypto market coverage",
+        "API access for seamless automated trading",
+        "Integration with popular trading bots for enhanced efficiency",
+        "Custom webhook notifications for instant updates",
+        "Automated entry and exit signals for precise trades",
+        "Comprehensive risk management parameters",
+        "Detailed performance tracking for informed strategy adjustments",
+        "Dedicated technical support for quick issue resolution",
+        "Advanced tools for backtesting trading strategies",
       ],
     },
-    mobile: {
-      title: "Mobile Alerts Package",
-      price: "$149/month",
+    "1 year": {
+      title: "1 Year Plan",
+      price: "N500k/month",
       features: [
-        "Instant mobile notifications",
-        "Push alerts for signals",
-        "Real-time market updates",
-        "Custom alert settings",
-        "Multiple device support",
-        "Priority signal delivery",
-        "Mobile app access",
-        "Desktop notifications backup",
+        "Reliable signals for major currency pairs",
+        "Insights from an updated economic calendar",
+        "In-depth fundamental analysis reports",
+        "Technical analysis setups for strategic trades",
+        "Optimized entry and exit strategies",
+        "Accurate risk/reward calculations for every trade",
+        "Insights into market correlations and their impact",
+        "Weekly forex market outlook for better planning",
       ],
     },
-    bot: {
-      title: "Bot Integration Package",
-      price: "$399/month",
+    "Life time": {
+      title: "Lifetime Plan",
+      price: "$500",
       features: [
-        "API access for automated trading",
-        "Compatible with major trading bots",
-        "Custom webhook support",
-        "Automated entry/exit signals",
-        "Risk management parameters",
-        "Performance tracking",
-        "Technical support",
-        "Strategy backtesting tools",
-      ],
-    },
-    forex: {
-      title: "Forex Signals Package",
-      price: "$199/month",
-      features: [
-        "Major currency pair signals",
-        "Economic calendar analysis",
-        "Fundamental analysis reports",
-        "Technical analysis setup",
-        "Entry/exit strategies",
-        "Risk/reward calculations",
-        "Market correlation insights",
-        "Weekly forex outlook",
-      ],
-    },
-    options: {
-      title: "Options Signals Package",
-      price: "$349/month",
-      features: [
-        "Options trading strategies",
-        "Greeks analysis",
-        "Volatility insights",
-        "Strike price recommendations",
-        "Expiration date guidance",
-        "Risk management strategies",
-        "Options chain analysis",
-        "Weekly market outlook",
+        "Comprehensive options trading strategies",
+        "Detailed Greeks analysis for advanced traders",
+        "Insights into market volatility and its effects",
+        "Recommendations for optimal strike prices",
+        "Guidance on selecting the best expiration dates",
+        "Effective risk management strategies for options",
+        "Thorough options chain analysis for informed trading",
+        "Weekly market outlooks to stay ahead of trends",
       ],
     },
   };
@@ -138,29 +105,39 @@ document.addEventListener("DOMContentLoaded", function () {
   subscribeButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
-      const planType = button
+      const planTitle = button
         .closest(".signal-card")
-        .querySelector("h3")
-        .textContent.toLowerCase()
-        .split(" ")[0];
-      const plan = signalPlans[planType];
+        .querySelector("h3").textContent;
+      const plan = signalPlans[planTitle];
 
-      modalContent.innerHTML = `
-                <h2>${plan.title}</h2>
-                <div class="price">${plan.price}</div>
-                <div class="features-list">
-                    <h3>What's Included:</h3>
-                    <ul>
-                        ${plan.features.map((feature) => `<li>${feature}</li>`).join("")}
-                    </ul>
-                </div>
-                <div class="modal-buttons">
-                    <button class="btn primary subscribe-now">Subscribe Now</button>
-                    <button class="btn secondary" onclick="document.getElementById('pricing-modal').classList.add('hidden')">Cancel</button>
-                </div>
-            `;
+      if (plan) {
+        modalContent.innerHTML = `
+          <h2>${plan.title}</h2>
+          <div class="price">${plan.price}</div>
+          <div class="features-list">
+            <h3>What's Included:</h3>
+            <ul>
+              ${plan.features.map((feature) => `<li>${feature}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="modal-buttons">
+            <button class="btn primary subscribe-now">Subscribe Now</button>
+            <button class="btn secondary" onclick="document.getElementById('pricing-modal').classList.add('hidden')">Cancel</button>
+          </div>
+        `;
 
-      modal.classList.remove("hidden");
+        modal.classList.remove("hidden");
+      }
+    });
+  });
+
+  makePaymentButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const price = button
+        .closest(".course-card")
+        .querySelector(".price").textContent;
+      redirectToPayment(price);
     });
   });
 
@@ -168,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     modal.classList.add("hidden");
   });
 
-  globalThis.addEventListener("click", (e) => {
+  window.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.classList.add("hidden");
     }
@@ -176,7 +153,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.addEventListener("click", (e) => {
     if (e.target.classList.contains("subscribe-now")) {
-      alert("Redirecting to payment processor...");
+      const price = e.target
+        .closest(".modal-content")
+        .querySelector(".price").textContent;
+      redirectToPayment(price);
     }
   });
+
+  function redirectToPayment(priceText) {
+    const amount = priceText.replace(/[^0-9.]/g, "");
+    const currency = priceText.includes("$") ? "USD" : "NGN";
+
+    const finalAmount = priceText.toLowerCase().includes("k")
+      ? parseFloat(amount) * 1000
+      : amount;
+
+    window.location.href = `payment.html?amount=${finalAmount}&currency=${currency}`;
+  }
+
+  const contactForm = document.querySelector(".contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you for your message. We will get back to you soon!");
+      contactForm.reset();
+    });
+  }
 });
