@@ -42,4 +42,3 @@ vendor/
 # Ignore venv
 myenv/
 venv/
-media
