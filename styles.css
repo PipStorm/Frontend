@@ -193,6 +193,7 @@ body {
 }
 
 .courses-grid,
+.management-grid,
 .signals-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -202,6 +203,7 @@ body {
 }
 
 .course-card,
+.management-card,
 .signal-card {
     background-color: var(--accent-color);
     padding: 2rem;

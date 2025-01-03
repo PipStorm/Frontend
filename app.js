@@ -1,21 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
   const showCoursesBtn = document.getElementById("show-courses");
   const showSignalsBtn = document.getElementById("show-signals");
+  const showAccountBtn = document.getElementById("show-account");
+
   const coursesContent = document.getElementById("courses-content");
   const signalsContent = document.getElementById("signals-content");
+  const accountContent = document.getElementById("account-content");
 
-  showCoursesBtn.addEventListener("click", () => {
+  showCoursesBtn.addEventListener("click", function () {
     coursesContent.classList.remove("hidden");
     signalsContent.classList.add("hidden");
+    accountContent.classList.add("hidden");
     showCoursesBtn.classList.add("active");
     showSignalsBtn.classList.remove("active");
+    showAccountBtn.classList.remove("active");
   });
 
-  showSignalsBtn.addEventListener("click", () => {
+  showSignalsBtn.addEventListener("click", function () {
     signalsContent.classList.remove("hidden");
     coursesContent.classList.add("hidden");
+    accountContent.classList.add("hidden");
     showSignalsBtn.classList.add("active");
     showCoursesBtn.classList.remove("active");
+    showAccountBtn.classList.remove("active");
+  });
+
+  showAccountBtn.addEventListener("click", function () {
+    accountContent.classList.remove("hidden");
+    coursesContent.classList.add("hidden");
+    signalsContent.classList.add("hidden");
+    showAccountBtn.classList.add("active");
+    showCoursesBtn.classList.remove("active");
+    showSignalsBtn.classList.remove("active");
   });
 
   const modal = document.getElementById("pricing-modal");
@@ -179,4 +195,24 @@ document.addEventListener("DOMContentLoaded", function () {
       contactForm.reset();
     });
   }
+
+  const learnMoreButtons = document.querySelectorAll("#account-content .btn");
+
+  learnMoreButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const card = button.closest(".management-card");
+      const title = card.querySelector("h3").textContent;
+
+      modalContent.innerHTML = `
+        <h2>${title}</h2>
+        <p>For this section you would need to contact our trader at this address: </p>
+        <div class="modal-buttons">
+          <button class="btn secondary" onclick="document.getElementById('pricing-modal').classList.add('hidden')">Close</button>
+        </div>
+      `;
+
+      modal.classList.remove("hidden");
+    });
+  });
 });
