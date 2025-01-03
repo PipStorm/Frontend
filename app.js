@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     "1 year": {
       title: "1 Year Plan",
-      price: "N500k/month",
+      price: "N500 thousand/month",
       features: [
         "Reliable signals for major currency pairs",
         "Insights from an updated economic calendar",
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const amount = priceText.replace(/[^0-9.]/g, "");
     const currency = priceText.includes("$") ? "USD" : "NGN";
 
-    const finalAmount = priceText.toLowerCase().includes("k")
+    const finalAmount = priceText.toLowerCase().includes("thousand")
       ? parseFloat(amount) * 1000
       : amount;
 
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       modalContent.innerHTML = `
         <h2>${title}</h2>
-        <p>For this section you would need to contact our trader at this address: </p>
+        <p>For this section you would need to contact our trader at this address: Senetorcrypt@gmail.com</p>
         <div class="modal-buttons">
           <button class="btn secondary" onclick="document.getElementById('pricing-modal').classList.add('hidden')">Close</button>
         </div>
