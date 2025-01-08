@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       modalContent.innerHTML = `
         <h2>${title}</h2>
-        <p>For this section you would need to contact our trader at this address: Senetorcrypt@gmail.com</p>
+        <p>For this section you would need to contact our trader at this address: pipstormfxacademy@gmail.com</p>
         <div class="modal-buttons">
           <button class="btn secondary" onclick="document.getElementById('pricing-modal').classList.add('hidden')">Close</button>
         </div>
