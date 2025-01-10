@@ -180,9 +180,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const amount = priceText.replace(/[^0-9.]/g, "");
     const currency = priceText.includes("$") ? "USD" : "NGN";
 
-    const finalAmount = priceText.toLowerCase().includes("500k")
-      ? parseFloat(amount) * 1000
-      : amount;
+    let finalAmount;
+    if (priceText.toLowerCase().includes("500k")) {
+      finalAmount = parseFloat(amount) * 1000;
+    } else if (priceText.toLowerCase().includes("100k")) {
+      finalAmount = parseFloat(amount) * 1000;
+    } else {
+      finalAmount = amount;
+    }
 
     window.location.href = `payment.html?amount=${finalAmount}&currency=${currency}`;
   }
