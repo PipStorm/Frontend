@@ -419,3 +419,69 @@ body {
         flex-direction: column;
     }
 }
+
+.social-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.social-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.social-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.social-link {
+    display: block;
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.social-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.social-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.social-card p {
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.username {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.social-card:hover .username {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+    .social-container {
+        grid-template-columns: 1fr;
+    }
+}
