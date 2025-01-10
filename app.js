@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let finalAmount;
     if (priceText.toLowerCase().includes("500k")) {
       finalAmount = parseFloat(amount) * 1000;
-    } else if (priceText.toLowerCase().includes("100k")) {
+    } else if (priceText.toLowerCase().includes("150k")) {
       finalAmount = parseFloat(amount) * 1000;
     } else {
       finalAmount = amount;
