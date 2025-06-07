@@ -8,6 +8,7 @@ export default function Payment() {
   const { amount, currency } = router.query;
   const [displayAmount, setDisplayAmount] = useState('');
   const [activeMethod, setActiveMethod] = useState<'bank' | 'usdt' | null>(null);
+  const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -37,6 +38,13 @@ export default function Payment() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleMethodChange = (method: 'bank' | 'usdt') => {
+    if (activeMethod === method) return;
+    setLoading(true);
+    setActiveMethod(method);
+    setTimeout(() => setLoading(false), 500);
+  };
+
   return (
     <>
       <Head>
@@ -56,24 +64,52 @@ export default function Payment() {
           {displayAmount ? <motion.h2 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>{displayAmount}</motion.h2> : <div className="loader" />}
         </div>
         <div className="payment-options">
-          <div className={`payment-card ${activeMethod === 'bank' ? 'active' : ''}`} onClick={() => setActiveMethod('bank')}>
+          <div
+            className={`payment-card ${activeMethod === 'bank' ? 'active' : ''}`}
+            onClick={() => handleMethodChange('bank')}
+          >
             <h3>Local Bank Transfer</h3>
             <div className="payment-details" id="bank-details">
-              <p>
-                <strong>Bank:</strong> Moniepoint
-              </p>
-              <div className="account-number" onClick={() => copyToClipboard('8107061926')}>8107061926</div>
-              {copied && <div className="copy-message">Account number copied!</div>}
+              {loading && activeMethod === 'bank' ? (
+                <div className="loader" />
+              ) : (
+                <>
+                  <p>
+                    <strong>Bank:</strong> Moniepoint
+                  </p>
+                  <div
+                    className="account-number"
+                    onClick={() => copyToClipboard('8107061926')}
+                  >
+                    8107061926
+                  </div>
+                  {copied && (
+                    <div className="copy-message">Account number copied!</div>
+                  )}
+                </>
+              )}
             </div>
           </div>
-          <div className={`payment-card ${activeMethod === 'usdt' ? 'active' : ''}`} onClick={() => setActiveMethod('usdt')}>
+          <div
+            className={`payment-card ${activeMethod === 'usdt' ? 'active' : ''}`}
+            onClick={() => handleMethodChange('usdt')}
+          >
             <h3>USDT Payment</h3>
             <div className="payment-details" id="usdt-details">
-              <div className="qr-container">
-                <div className="qr-placeholder">USDT QR Code</div>
-                <img src="/media/USDT.jpeg" alt="USDT" className="usdt-image" />
-                <p>Scan QR code to pay with USDT</p>
-              </div>
+              {loading && activeMethod === 'usdt' ? (
+                <div className="loader" />
+              ) : (
+                <div className="qr-container">
+                  <img src="/media/USDT.jpeg" alt="USDT" className="usdt-image" />
+                  <div
+                    className="account-number"
+                    onClick={() => copyToClipboard('0x123456789ABCDEF')}
+                  >
+                    0x123456789ABCDEF
+                  </div>
+                  <p>Scan QR code to pay with USDT</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
