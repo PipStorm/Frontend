@@ -100,12 +100,12 @@ export default function Payment() {
                 <div className="loader" />
               ) : (
                 <div className="qr-container">
-                  <img src="/media/USDT.jpeg" alt="USDT" className="usdt-image" />
+                  <img src="/media/USDT.png" alt="USDT" className="usdt-image" />
                   <div
                     className="account-number"
-                    onClick={() => copyToClipboard('0x123456789ABCDEF')}
+                    onClick={() => copyToClipboard('TX3G5ghv6DJEqNNUy65W2ZBnia5Z7QbWmQ')}
                   >
-                    0x123456789ABCDEF
+                   TX3G5ghv6DJEqNNUy65W2ZBnia5Z7QbWmQ 
                   </div>
                   <p>Scan QR code to pay with USDT</p>
                 </div>
